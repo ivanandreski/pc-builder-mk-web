@@ -18,7 +18,7 @@ const NavBar: FunctionComponent = () => {
   };
 
   return (
-    <nav className="bg-gray-500">
+    <nav className="bg-gray-500 sticky top-0">
       <div className="border-gray-200 max-w-screen-xl flex flex-wrap items-center mx-auto py-4">
         <button
           onClick={() => setShow((show) => !show)}

@@ -4,6 +4,7 @@ import RouteNames from "./Config/RouteNames";
 
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import ProductDetails from "./Pages/ProductDetails";
 
 import Home from "./Home";
 
@@ -18,9 +19,10 @@ export default function App() {
         <Route path={RouteNames.Home} element={<Layout />}>
           <Route index element={<PcBuild />} />
           <Route path={RouteNames.PcBuild} element={<PcBuild />} />
+          <Route path={RouteNames.Products} element={<Products />} />
+          <Route path={RouteNames.ProductDetails} element={<ProductDetails />} />
           <Route path={RouteNames.Register} element={<Register />} />
           <Route path={RouteNames.Login} element={<Login />} />
-          <Route path={RouteNames.Products} element={<Products />} />
         </Route>
       </Routes>
     </HashRouter>

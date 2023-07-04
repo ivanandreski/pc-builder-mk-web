@@ -6,5 +6,6 @@ export default class RouteNames {
   static Register = "/register";
 
     static Products = "/products";
+    static ProductDetails = "/product/details";
     static PcBuild = "/pc-build";
 }

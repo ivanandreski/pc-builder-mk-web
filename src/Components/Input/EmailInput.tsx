@@ -6,11 +6,10 @@ interface EmailInputProps {
 }
 
 const EmailInput: FC<EmailInputProps> = ({ value, setValue }) => {
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const inputValue = event.target.value;
-        setValue(inputValue);
-      };
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
+    setValue(inputValue);
+  };
 
   return (
     <div>

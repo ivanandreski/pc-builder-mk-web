@@ -1,14 +1,17 @@
 import React, { FC } from 'react'
 
+import DividerTitle from './DividerTitle'
+
 interface SelectedProductCardProps {
-  
+  title: string,
+  product: object
 }
 
-const SelectedProductCard: FC<SelectedProductCardProps> = ({  }) => {
+const SelectedProductCard: FC<SelectedProductCardProps> = ({ title, product }) => {
   return (
-    <div>
-     SelectedProductCard
-    </div>
+    <>
+      <DividerTitle title={title} />
+    </>
   )
 }
 
