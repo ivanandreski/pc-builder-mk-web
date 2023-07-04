@@ -18,7 +18,7 @@ const NavLink: React.FC<NavLinkProps> = ({ name, route, setShow }) => {
       <Link
         to={route}
         onClick={handleClick}
-        className="block py-2 pl-3 pr-4 text-gray-900 rounded bg-gray-100 hover:bg-gray-200"
+        className="block py-2 pl-3 pr-4 text-gray-100 bg-gray-500 hover:bg-gray-400 border-b-2 border-gray-100"
       >
         {name}
       </Link>

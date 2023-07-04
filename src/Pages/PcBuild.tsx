@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react'
+import SummaryCard from '../Components/SummaryCard';
 
 const PcBuild: FunctionComponent = () => {
   return (
     <div>
-     PcBuild
+     <SummaryCard totalPrice={12000} compatible={false} />
     </div>
   )
 }

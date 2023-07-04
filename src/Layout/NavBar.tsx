@@ -18,12 +18,12 @@ const NavBar: FunctionComponent = () => {
   };
 
   return (
-    <nav className="bg-gray-100">
+    <nav className="bg-gray-500">
       <div className="border-gray-200 max-w-screen-xl flex flex-wrap items-center mx-auto py-4">
         <button
           onClick={() => setShow((show) => !show)}
           type="button"
-          className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          className="inline-flex items-center p-2 ml-3 text-sm text-gray-100 rounded-lg hover:bg-gray-400 outline-none ring-2 ring-gray-200"
         >
           <span className="sr-only">Open main menu</span>
           <svg
@@ -41,23 +41,33 @@ const NavBar: FunctionComponent = () => {
           </svg>
         </button>
         <div className="ml-3 flex items-center">
-          <span className="text-gray-500 self-center text-2xl font-semibold whitespace-nowrap">
+          <span className="text-gray-100 self-center text-xl font-semibold whitespace-nowrap">
             Current page name
           </span>
         </div>
         <div className={`w-full ${show ? "" : "hidden"}`} id="navbar-hamburger">
-          <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50">
+          <ul className="flex flex-col font-medium mt-4 rounded-lg border-t-2 border-gray-100">
             {getUser ? (
               <li>
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left py-2 pl-3 pr-4 text-gray-900 rounded bg-gray-100 hover:bg-gray-200"
+                  className="w-full text-left py-2 pl-3 pr-4 text-gray-100 bg-gray-500 hover:bg-gray-400 border-b-2 border-gray-100"
                 >
                   Logout
                 </button>
               </li>
             ) : (
               <>
+                <NavLink
+                  name="Products"
+                  route={RouteNames.Products}
+                  setShow={setShow}
+                />
+                <NavLink
+                  name="Pc Build"
+                  route={RouteNames.PcBuild}
+                  setShow={setShow}
+                />
                 <NavLink
                   name="Register"
                   route={RouteNames.Register}

@@ -1,6 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 
 const Products: FunctionComponent = () => {
+
+  const [products, setProducts] = useState([]);
+
   return <div></div>;
 };
 
