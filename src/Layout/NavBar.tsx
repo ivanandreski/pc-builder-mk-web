@@ -15,7 +15,7 @@ const NavBar: FunctionComponent = () => {
   const location = useLocation();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setShow(false);
   };
 
@@ -49,6 +49,16 @@ const NavBar: FunctionComponent = () => {
         </div>
         <div className={`w-full ${show ? "" : "hidden"}`} id="navbar-hamburger">
           <ul className="flex flex-col font-medium mt-4 rounded-lg border-t-2 border-gray-100">
+            <NavLink
+              name="Products"
+              route={RouteNames.Products}
+              setShow={setShow}
+            />
+            <NavLink
+              name="Pc Build"
+              route={RouteNames.PcBuild}
+              setShow={setShow}
+            />
             {getUser ? (
               <li>
                 <button
@@ -60,16 +70,6 @@ const NavBar: FunctionComponent = () => {
               </li>
             ) : (
               <>
-                <NavLink
-                  name="Products"
-                  route={RouteNames.Products}
-                  setShow={setShow}
-                />
-                <NavLink
-                  name="Pc Build"
-                  route={RouteNames.PcBuild}
-                  setShow={setShow}
-                />
                 <NavLink
                   name="Register"
                   route={RouteNames.Register}

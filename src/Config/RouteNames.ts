@@ -14,8 +14,8 @@ export default class RouteNames {
     if (route === RouteNames.Register) return "Register";
     if (route === RouteNames.Products) return "Products";
     if (route === RouteNames.ProductDetails) return "Product Details";
-    if (route === RouteNames.PcBuild) return "PC Build";
+    if (route === RouteNames.PcBuild) return "PC Builder";
 
-    return "Unknown";
+    return "PC Builder";
   }
 }

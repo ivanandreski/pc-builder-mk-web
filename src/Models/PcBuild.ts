@@ -13,11 +13,11 @@ export class PcBuild {
   constructor(data?: object | null) {
     this.motherboard = data?.motherboard;
     this.processor = data?.processor;
-    this.ram = data?.ram[0] || null;
+    this.ram = data?.ramSticks[0] || null;
     this.graphicsCard = data?.graphicsCard;
     this.powerSupply = data?.powerSupply;
     this.case = data?.case;
-    this.storage = data?.storage[0] || null;
+    this.storage = data?.storageDevices[0] || null;
 
     this.modifiedAt = data?.modifiedAt || new Date();
   }

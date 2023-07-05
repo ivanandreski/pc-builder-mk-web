@@ -1,11 +1,8 @@
-interface User {
-  token: number;
-  email: string;
-}
+import {User} from "../Models/User";
 
 const useGetUser = (): User | undefined => {
-  return localStorage.getItem("token") != undefined
-    ? (JSON.parse(localStorage.getItem("token")!) as User)
+  return localStorage.getItem("user") != undefined
+    ? (JSON.parse(localStorage.getItem("user")!) as User)
     : undefined;
 };
 

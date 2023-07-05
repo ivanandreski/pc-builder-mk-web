@@ -29,7 +29,7 @@ const Products: FunctionComponent = () => {
   useEffect(() => {
     setPage(0);
     fetchProducts();
-  }, [category])
+  }, [category]);
 
   const fetchProducts = async () => {
     try {
@@ -37,8 +37,9 @@ const Products: FunctionComponent = () => {
         params: { page: page, category: category },
       });
 
-      console.log(response.data.content.content);
-      const parsedProducts = response.data.content.content.map((p: object) => new Product(p));
+      const parsedProducts = response.data.content.content.map(
+        (p: object) => new Product(p)
+      );
       setProducts(parsedProducts);
       setIsFirst(response.data.content.first);
       setIsLast(response.data.content.last);
@@ -49,7 +50,7 @@ const Products: FunctionComponent = () => {
 
   return (
     <div>
-      <div className="sticky top-20">
+      <div className="">
         <ProductFilter category={category} setCategory={setCategory} />
       </div>
       <div ref={itemsRef}>

@@ -27,7 +27,7 @@ const Register: FunctionComponent = () => {
       });
 
       localStorage.setItem(
-        "token",
+        "user",
         JSON.stringify({
           token: response.data.token,
           email: response.data.email,

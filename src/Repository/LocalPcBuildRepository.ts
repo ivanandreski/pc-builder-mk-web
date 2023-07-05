@@ -3,14 +3,24 @@ import { Product } from "../Models/Product";
 import { IPcBuildRepository } from "./IPcBuildRepository";
 
 export class LocalPcBuildRepository implements IPcBuildRepository {
+  private static instance: LocalPcBuildRepository;
+
+  public static getInstance(): LocalPcBuildRepository {
+    if (!LocalPcBuildRepository.instance) {
+      LocalPcBuildRepository.instance = new LocalPcBuildRepository();
+    }
+
+    return LocalPcBuildRepository.instance;
+  }
+
   async fetchPcBuild(): Promise<PcBuild> {
     const cacheResult = localStorage.getItem("pc-build");
     return cacheResult ? JSON.parse(cacheResult) : new PcBuild();
   }
 
-  async addProduct(category: string, product: Product): Promise<PcBuild> {
+  async addProduct(product: Product): Promise<PcBuild> {
     const pcBuild = await this.fetchPcBuild();
-    switch (category) {
+    switch (product.categorySlug) {
       case "mb":
         pcBuild.motherboard = product;
         break;
@@ -37,9 +47,9 @@ export class LocalPcBuildRepository implements IPcBuildRepository {
     return pcBuild;
   }
 
-  async removeProduct(category: string, product: Product): Promise<PcBuild> {
+  async removeProduct(product: Product): Promise<PcBuild> {
     const pcBuild = await this.fetchPcBuild();
-    switch (category) {
+    switch (product.categorySlug) {
       case "mb":
         pcBuild.motherboard = null;
         break;

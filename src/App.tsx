@@ -9,7 +9,7 @@ import ProductDetails from "./Pages/ProductDetails";
 import Home from "./Home";
 
 import Layout from "./Layout/Layout";
-import PcBuild from "./Pages/PcBuild";
+import PcBuildPage from "./Pages/PcBuildPage";
 import Products from "./Pages/Products";
 
 export default function App() {
@@ -17,8 +17,8 @@ export default function App() {
     <HashRouter>
       <Routes>
         <Route path={RouteNames.Home} element={<Layout />}>
-          <Route index element={<PcBuild />} />
-          <Route path={RouteNames.PcBuild} element={<PcBuild />} />
+          <Route index element={<PcBuildPage />} />
+          <Route path={RouteNames.PcBuild} element={<PcBuildPage />} />
           <Route path={RouteNames.Products} element={<Products />} />
           <Route path={RouteNames.ProductDetails} element={<ProductDetails />} />
           <Route path={RouteNames.Register} element={<Register />} />
