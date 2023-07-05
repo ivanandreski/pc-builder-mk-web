@@ -2,15 +2,7 @@ import { PcBuild } from "../Models/PcBuild";
 import { Product } from "../Models/Product";
 
 export interface IPcBuildRepository {
-  fetchPcBuild: (token?: string | null) => Promise<PcBuild>;
-  addProduct: (
-    category: string,
-    product: Product,
-    token?: string | null
-  ) => Promise<PcBuild>;
-  removeProduct: (
-    category: string,
-    product: Product,
-    token?: string | null
-  ) => Promise<PcBuild>;
+  fetchPcBuild: () => Promise<PcBuild>;
+  addProduct: (category: string, product: Product) => Promise<PcBuild>;
+  removeProduct: (category: string, product: Product) => Promise<PcBuild>;
 }

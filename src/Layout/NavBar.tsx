@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import RouteNames from "../Config/RouteNames";
 
@@ -11,6 +12,7 @@ const NavBar: FunctionComponent = () => {
   const [show, setShow] = useState(false);
 
   const getUser = useGetUser();
+  const location = useLocation();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -42,7 +44,7 @@ const NavBar: FunctionComponent = () => {
         </button>
         <div className="ml-3 flex items-center">
           <span className="text-gray-100 self-center text-xl font-semibold whitespace-nowrap">
-            Current page name
+            {RouteNames.routeUrlToTitle(location.pathname)}
           </span>
         </div>
         <div className={`w-full ${show ? "" : "hidden"}`} id="navbar-hamburger">

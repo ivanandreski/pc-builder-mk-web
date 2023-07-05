@@ -7,7 +7,7 @@ const HomeLayout: FunctionComponent = () => {
   return (
     <>
       <NavBar />
-      <main className="p-4">
+      <main className="max-w-screen-xl mx-auto mt-2 p-4">
       <Outlet />
       </main>
     </>
