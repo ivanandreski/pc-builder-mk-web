@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import RouteNames from "../Config/RouteNames";
 import DividerTitle from "./DividerTitle";
 import { Product } from "../Models/Product";
+import noImageAvailable from "../assets/no-image-available.jpg";
 
 interface SelectedProductCardProps {
   title: string;
@@ -23,7 +24,7 @@ const SelectedProductCard: FC<SelectedProductCardProps> = ({
         <div className="w-2/6 mr-1">
           <img
             className="rounded-t-lg"
-            src={product.imageUrl}
+            src={product.imageUrl.split(";")[0]}
             alt="Product Image"
             onError={(e) => (e.target.src = noImageAvailable)}
           />

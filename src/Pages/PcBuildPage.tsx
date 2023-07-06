@@ -35,7 +35,8 @@ const PcBuildPage: FunctionComponent = () => {
     <div>
       <SummaryCard
         totalPrice={pcBuild?.totalPrice() || 0}
-        compatible={pcBuild?.isCompatible() || false}
+        compatible={pcBuild?.isCompatible().isCompatible || false}
+        messages={pcBuild?.isCompatible().messages}
       />
       {pcBuild?.motherboard && (
         <SelectedProductCard

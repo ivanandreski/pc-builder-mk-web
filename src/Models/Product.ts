@@ -30,4 +30,12 @@ export class Product {
       (storeLocation: object) => new StoreLocation(storeLocation)
     );
   }
+
+  getImage(): string {
+    if (this.storeName === "Anhoch") {
+      return this.imageUrl.split(";")[0];
+    }
+
+    return this.imageUrl;
+  }
 }

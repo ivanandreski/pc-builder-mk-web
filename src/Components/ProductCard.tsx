@@ -15,7 +15,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         <div className="flex justify-center">
           <img
             className="rounded-t-lg"
-            src={product.imageUrl}
+            src={product.imageUrl.split(";")[0]}
             alt="Product Image"
             onError={(e) => (e.target.src = noImageAvailable)}
           />
