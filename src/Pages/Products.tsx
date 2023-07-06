@@ -20,6 +20,7 @@ const Products: FunctionComponent = () => {
 
   // filters
   const [category, setCategory] = useState("mb");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetchProducts();
@@ -29,12 +30,12 @@ const Products: FunctionComponent = () => {
   useEffect(() => {
     setPage(0);
     fetchProducts();
-  }, [category]);
+  }, [category, search]);
 
   const fetchProducts = async () => {
     try {
       const response = await axios.get("product", {
-        params: { page: page, category: category },
+        params: { page: page, category: category, sortParameter: "price_asc", ...(search.length > 0 && {search: search}) },
       });
 
       const parsedProducts = response.data.content.content.map(
@@ -51,7 +52,7 @@ const Products: FunctionComponent = () => {
   return (
     <div>
       <div className="">
-        <ProductFilter category={category} setCategory={setCategory} />
+        <ProductFilter category={category} setCategory={setCategory} search={search} setSearch={setSearch} />
       </div>
       <div ref={itemsRef}>
         <div className="flex mb-2">
