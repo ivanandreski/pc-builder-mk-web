@@ -7,6 +7,9 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      // add this to cache all the
+      // static assets in the public folder
+      includeAssets: ["**/*"],
       manifest: {
         name: "pc-builder-mk",
         short_name: "pc-builder-mk",
@@ -24,6 +27,23 @@ export default defineConfig({
       devOptions: {
         enabled: true,
         type: "module",
+      },
+      workbox: {
+        globPatterns: ["**/*"],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => {
+              return url.pathname.startsWith("/api/product");
+            },
+            handler: "CacheFirst" as const,
+            options: {
+              cacheName: "api-products-cache",
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
       },
     }),
   ],

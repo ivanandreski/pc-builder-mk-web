@@ -75,6 +75,18 @@ export class PcBuild {
     );
   }
 
+  allNull(): boolean {
+    return (
+      (this.motherboard?.price == null) &&
+      (this.processor?.price == null) &&
+      (this.ram?.price == null) &&
+      (this.graphicsCard?.price == null) &&
+      (this.powerSupply?.price == null) &&
+      (this.case?.price == null) &&
+      (this.storage?.price == null)
+    );
+  }
+
   private motherboardProccesorCompatibility(): number {
     if (this.motherboard == null) return 0;
     if (this.processor == null) return 0;

@@ -26,8 +26,7 @@ export class PcBuildService {
         const remotePcBuild = await this.remotePcBuildRepository.fetchPcBuild();
         const localPcBuild = await this.localPcBuildRepository.fetchPcBuild();
 
-        console.log(remotePcBuild.modifiedAt >= localPcBuild.modifiedAt);
-        if (remotePcBuild.modifiedAt >= localPcBuild.modifiedAt)
+        if (remotePcBuild.modifiedAt >= localPcBuild.modifiedAt || localPcBuild.allNull())
           this.localPcBuildRepository.cachePcBuild(remotePcBuild);
         else if (remotePcBuild.modifiedAt < localPcBuild.modifiedAt)
           return localPcBuild;
