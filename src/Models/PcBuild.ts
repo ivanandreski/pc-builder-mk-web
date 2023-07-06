@@ -24,7 +24,21 @@ export class PcBuild {
     this.case = data?.case;
     this.storage = data?.storageDevices[0] || null;
 
-    this.modifiedAt = data?.modifiedAt || new Date();
+    this.modifiedAt = new Date(data?.modifiedAt) || new Date();
+  }
+
+  static copyFromJson(parsedJson: object) {
+    const pcBuild = new PcBuild();
+    pcBuild.motherboard = parsedJson?.motherboard;
+    pcBuild.processor = parsedJson?.processor;
+    pcBuild.ram = parsedJson?.ram;
+    pcBuild.graphicsCard = parsedJson?.graphicsCard;
+    pcBuild.powerSupply = parsedJson?.powerSupply;
+    pcBuild.case = parsedJson?.case;
+    pcBuild.storage = parsedJson?.storage;
+    pcBuild.modifiedAt = new Date(parsedJson?.modifiedAt) || new Date();
+
+    return pcBuild;
   }
 
   isCompatible(): isCompatibleReturnType {

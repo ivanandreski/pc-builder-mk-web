@@ -15,17 +15,26 @@ export class PcBuildService {
     return PcBuildService.instance;
   }
 
-  private localPcBuildRepository: IPcBuildRepository =
+  private localPcBuildRepository: LocalPcBuildRepository =
     LocalPcBuildRepository.getInstance();
-  private remotePcBuildRepository: IPcBuildRepository =
+  private remotePcBuildRepository: RemotePcBuildRepository =
     RemotePcBuildRepository.getInstance();
 
   async fetchPcBuild(): Promise<PcBuild> {
     if (window.navigator.onLine && localStorage.getItem("user") != undefined) {
       try {
-        return await this.remotePcBuildRepository.fetchPcBuild();
+        const remotePcBuild = await this.remotePcBuildRepository.fetchPcBuild();
+        const localPcBuild = await this.localPcBuildRepository.fetchPcBuild();
+
+        console.log(remotePcBuild.modifiedAt >= localPcBuild.modifiedAt);
+        if (remotePcBuild.modifiedAt >= localPcBuild.modifiedAt)
+          this.localPcBuildRepository.cachePcBuild(remotePcBuild);
+        else if (remotePcBuild.modifiedAt < localPcBuild.modifiedAt)
+          return localPcBuild;
+
+        return remotePcBuild;
       } catch (e) {
-        console.log(e);
+        return await this.localPcBuildRepository.fetchPcBuild();
       }
     }
 

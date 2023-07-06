@@ -16,25 +16,26 @@ export class RemotePcBuildRepository implements IPcBuildRepository {
     return RemotePcBuildRepository.instance;
   }
 
-  private token: string = (JSON.parse(localStorage.getItem("user")) as User)
-    .token;
-
   async fetchPcBuild(): Promise<PcBuild> {
+    const token = (JSON.parse(localStorage.getItem("user")) as User).token;
+
     const { data } = await axios.get("customPcBuild", {
-      headers: { Authorization: `Bearer ${this.token}` },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     return new PcBuild(data);
   }
 
   async addProduct(product: Product): Promise<PcBuild> {
+    const token = (JSON.parse(localStorage.getItem("user")) as User).token;
+
     const { data } = await axios.put(
       "customPcBuild/addProduct",
       {
         productSlug: product.slug,
       },
       {
-        headers: { Authorization: `Bearer ${this.token}` },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
 
@@ -42,13 +43,15 @@ export class RemotePcBuildRepository implements IPcBuildRepository {
   }
 
   async removeProduct(product: Product): Promise<PcBuild> {
+    const token = (JSON.parse(localStorage.getItem("user")) as User).token;
+
     const { data } = await axios.put(
       "customPcBuild/removeProduct",
       {
         productSlug: product.slug,
       },
       {
-        headers: { Authorization: `Bearer ${this.token}` },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
 

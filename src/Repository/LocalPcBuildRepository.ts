@@ -15,7 +15,9 @@ export class LocalPcBuildRepository implements IPcBuildRepository {
 
   async fetchPcBuild(): Promise<PcBuild> {
     const cacheResult = localStorage.getItem("pc-build");
-    return cacheResult ? JSON.parse(cacheResult) : new PcBuild();
+    return cacheResult
+      ? PcBuild.copyFromJson(JSON.parse(cacheResult))
+      : new PcBuild();
   }
 
   async addProduct(product: Product): Promise<PcBuild> {
@@ -43,6 +45,9 @@ export class LocalPcBuildRepository implements IPcBuildRepository {
         pcBuild.storage = product;
         break;
     }
+
+    pcBuild.modifiedAt = new Date();
+    this.cachePcBuild(pcBuild);
 
     return pcBuild;
   }
@@ -72,6 +77,9 @@ export class LocalPcBuildRepository implements IPcBuildRepository {
         pcBuild.storage = null;
         break;
     }
+
+    pcBuild.modifiedAt = new Date();
+    this.cachePcBuild(pcBuild);
 
     return pcBuild;
   }

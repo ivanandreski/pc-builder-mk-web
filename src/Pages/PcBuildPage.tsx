@@ -11,9 +11,9 @@ const PcBuildPage: FunctionComponent = () => {
 
   const [pcBuild, setPcBuild] = useState<PcBuild>();
   const [isLoading, setIsLoading] = useState(true);
-  const [showDialog, setShowDialog] = useState(
-    localStorage.getItem("user") == undefined || !window.navigator.onLine
-  );
+  // const [showDialog, setShowDialog] = useState(
+  //   localStorage.getItem("user") == undefined || !window.navigator.onLine
+  // );
 
   useEffect(() => {
     init();
@@ -36,7 +36,7 @@ const PcBuildPage: FunctionComponent = () => {
       <SummaryCard
         totalPrice={pcBuild?.totalPrice() || 0}
         compatible={pcBuild?.isCompatible().isCompatible || false}
-        messages={pcBuild?.isCompatible().messages}
+        messages={pcBuild?.isCompatible().messages || []}
       />
       {pcBuild?.motherboard && (
         <SelectedProductCard
@@ -88,7 +88,7 @@ const PcBuildPage: FunctionComponent = () => {
         />
       )}
 
-      {showDialog && <PcBuildDialog setShowDialog={setShowDialog} />}
+      {/* {showDialog && <PcBuildDialog setShowDialog={setShowDialog} />} */}
     </div>
   );
 };
