@@ -8,6 +8,8 @@ interface ProductFilterProps {
   setSearch: (value: string) => void;
   available: number;
   setAvailable: (value: number) => void;
+  store: string;
+  setStore: (value: string) => void;
 }
 
 const ProductFilter: FC<ProductFilterProps> = ({
