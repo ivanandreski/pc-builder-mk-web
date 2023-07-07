@@ -6,6 +6,7 @@ import { Product } from "../Models/Product";
 import CompatibleIcon from "../Components/CompatibleIcon";
 import { PcBuildService } from "../Services/PcBuildService";
 import RouteNames from "../Config/RouteNames";
+import { StoreLocation } from "../Models/StoreLocation";
 
 const ProductDetails: FC = () => {
   const navigate = useNavigate();
@@ -17,6 +18,16 @@ const ProductDetails: FC = () => {
     await pcBuildService.addProduct(product);
 
     navigate(RouteNames.PcBuild);
+  };
+
+  const handleStoreClick = async (store: StoreLocation) => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const { latitude } = position.coords;
+      const { longitude } = position.coords;
+      window.open(
+        `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${store.latitude},${store.longitude}&travelmode=driving`
+      );
+    });
   };
 
   return (
@@ -53,13 +64,13 @@ const ProductDetails: FC = () => {
         </button>
         <hr className="w-full my-2 border border-gray-500" />
         {product.storeLocations.map((store, i) => (
-          <a
-            href={`https://www.google.com/maps/dir/?api=1&origin=${43},${43}&destination=${43},${43}&travelmode=driving`}
+          <button
+            onClick={() => handleStoreClick(store)}
             key={i}
             className="block w-full text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
           >
             {store.name}
-          </a>
+          </button>
         ))}
       </div>
     </>
