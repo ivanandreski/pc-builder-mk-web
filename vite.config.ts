@@ -5,6 +5,10 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  preview: {
+    host: true,
+    port: 5137
+  },
   plugins: [
     react(),
     basicSsl(),
