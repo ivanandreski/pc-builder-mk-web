@@ -1,0 +1,6 @@
+change lon lat in stores
+see why store location button is so slow
+add button with store image in product details that takes the user to the store page with the product
+add warning in pc build page if all products are available or not
+in product details if produc is already in build change the add to build button to remove from build
+in pc build page make line between categories dynamic, on responsive galaxys s20+ line over motherboard
