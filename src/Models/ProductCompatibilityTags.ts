@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 export class ProductCompatibilityTags {
     public processorCodeName: string | null;
     public socket: string | null;

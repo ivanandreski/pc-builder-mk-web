@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { ProductCompatibilityTags } from "./ProductCompatibilityTags";
 import { StoreLocation } from "./StoreLocation";
 

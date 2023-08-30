@@ -1,12 +1,12 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 interface PcBuildDialogProps {
   setShowDialog: (value: boolean) => void;
 }
 
 const PcBuildDialog: FC<PcBuildDialogProps> = ({ setShowDialog }) => {
-  const isLoggedIn = localStorage.getItem("user") != undefined;
-  const isOnline = window.navigator.onLine;
+  // const isLoggedIn = localStorage.getItem("user") != undefined;
+  // const isOnline = window.navigator.onLine;
   // todo: change text based on these parameters
 
   return (

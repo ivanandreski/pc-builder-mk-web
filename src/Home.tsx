@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 
 const Home: FunctionComponent = () => {
-  return <div>fgsdhgjkhfdsgjk</div>;
+    return <div>fgsdhgjkhfdsgjk</div>;
 };
 
 export default Home;

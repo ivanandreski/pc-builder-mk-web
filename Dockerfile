@@ -31,7 +31,7 @@ COPY vite.config.ts .
 
 RUN npm install typescript
 
-EXPOSE 5137
+# EXPOSE 5137
 
-# Start the nginx server
-CMD ["npm", "run", "preview"]
+# # Start the nginx server
+# CMD ["npm", "run", "preview"]

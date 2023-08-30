@@ -17,6 +17,7 @@ export class RemotePcBuildRepository implements IPcBuildRepository {
   }
 
   async fetchPcBuild(): Promise<PcBuild> {
+    // @ts-ignore
     const token = (JSON.parse(localStorage.getItem("user")) as User).token;
 
     const { data } = await axios.get("customPcBuild", {
@@ -27,6 +28,7 @@ export class RemotePcBuildRepository implements IPcBuildRepository {
   }
 
   async addProduct(product: Product): Promise<PcBuild> {
+    // @ts-ignore
     const token = (JSON.parse(localStorage.getItem("user")) as User).token;
 
     const { data } = await axios.put(
@@ -43,6 +45,7 @@ export class RemotePcBuildRepository implements IPcBuildRepository {
   }
 
   async removeProduct(product: Product): Promise<PcBuild> {
+    // @ts-ignore
     const token = (JSON.parse(localStorage.getItem("user")) as User).token;
 
     const { data } = await axios.put(

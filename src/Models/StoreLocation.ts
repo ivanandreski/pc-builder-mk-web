@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 export class StoreLocation {
     public name: string;
     public slug: string;

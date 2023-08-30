@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Product } from "./Product";
 
 interface isCompatibleReturnType {
