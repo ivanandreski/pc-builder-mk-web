@@ -1,4 +1,5 @@
 import ProductCard from "../Components/ProductCard";
+import Spinner from "../Components/Spinner";
 import ProductFilter from "../Components/ProductFilter";
 import axios from "../axios/axios";
 import { FunctionComponent, useEffect, useState, createRef } from "react";
@@ -6,6 +7,8 @@ import { FunctionComponent, useEffect, useState, createRef } from "react";
 import { Product } from "../Models/Product";
 
 const Products: FunctionComponent = () => {
+    const [isLoading, setIsLoading] = useState(true);
+
     const itemsRef = createRef<HTMLDivElement>();
 
     const [products, setProducts] = useState<Product[]>([]);
@@ -20,11 +23,15 @@ const Products: FunctionComponent = () => {
     const [store, setStore] = useState<string>("");
 
     useEffect(() => {
+        setIsLoading(true);
+
         fetchProducts();
         window.scrollTo(0, 0);
     }, [page]);
 
     useEffect(() => {
+        setIsLoading(true);
+
         setPage(0);
         fetchProducts();
     }, [category, search, available, store]);
@@ -50,6 +57,8 @@ const Products: FunctionComponent = () => {
             setProducts(parsedProducts);
             setIsFirst(response.data.content.first);
             setIsLast(response.data.content.last);
+
+            setIsLoading(false);
         } catch (e: any) {
             console.log(e);
         }
@@ -99,11 +108,18 @@ const Products: FunctionComponent = () => {
                         </button>
                     </div>
                 </div>
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-2">
-                    {products.map((p, i) => (
-                        <ProductCard key={i} product={p} />
-                    ))}
-                </div>
+                {isLoading && (
+                    <div className="w-full">
+                        <Spinner />
+                    </div>
+                )}
+                {!isLoading && (
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-2">
+                        {products.map((p, i) => (
+                            <ProductCard key={i} product={p} />
+                        ))}
+                    </div>
+                )}
                 <div className="flex">
                     <div className="flex-initial w-2/6">
                         <button
