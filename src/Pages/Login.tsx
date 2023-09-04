@@ -6,6 +6,9 @@ import RouteNames from "../Config/RouteNames";
 import PasswordInput from "../Components/Input/PasswordInput";
 import EmailInput from "../Components/Input/EmailInput";
 
+
+// TODO: wrong password
+
 const Login: FunctionComponent = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,6 +29,7 @@ const Login: FunctionComponent = () => {
                 JSON.stringify({
                     token: response.data.token,
                     email: response.data.email,
+                    role: response.data.role,
                 })
             );
 

@@ -6,6 +6,9 @@ import RouteNames from "../Config/RouteNames";
 import PasswordInput from "../Components/Input/PasswordInput";
 import EmailInput from "../Components/Input/EmailInput";
 
+
+// TODO: VALIDATION
+
 const Register: FunctionComponent = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

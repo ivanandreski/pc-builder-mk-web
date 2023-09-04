@@ -1,6 +1,11 @@
-import { FunctionComponent, useState, useRef, useEffect } from "react";
+import {
+    FunctionComponent,
+    useState,
+    useRef,
+    useEffect,
+    useReducer,
+} from "react";
 import { useLocation } from "react-router-dom";
-
 import RouteNames from "../Config/RouteNames";
 
 import useGetUser from "../Hooks/useGetUser";
@@ -8,6 +13,8 @@ import useGetUser from "../Hooks/useGetUser";
 import NavLink from "../Components/NavLink";
 
 const NavBar: FunctionComponent = () => {
+    const forceUpdate = useReducer(() => ({}), {})[1] as () => void;
+
     const [show, setShow] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -17,6 +24,7 @@ const NavBar: FunctionComponent = () => {
     const handleLogout = () => {
         localStorage.removeItem("user");
         setShow(false);
+        forceUpdate();
     };
 
     useEffect(() => {
@@ -76,10 +84,21 @@ const NavBar: FunctionComponent = () => {
                         </li>
                     </ul>
                     <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200">
-                        <NavLink route={RouteNames.PcBuild} setShow={setShow}>
+                        <NavLink
+                            route={RouteNames.PcBuild}
+                            setShow={setShow}
+                            activeRoute={
+                                location.pathname == RouteNames.PcBuild ||
+                                location.pathname == RouteNames.Home
+                            }
+                        >
                             <svg
-                                aria-hidden="true"
-                                className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900"
+                                className={`w-6 h-6 ${
+                                    location.pathname == RouteNames.PcBuild ||
+                                    location.pathname == RouteNames.Home
+                                        ? "text-purple-600"
+                                        : "text-gray-400"
+                                } transition duration-75 group-hover:text-gray-900`}
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -88,10 +107,19 @@ const NavBar: FunctionComponent = () => {
                             </svg>
                             <span className="ml-3">PC Build</span>
                         </NavLink>
-                        <NavLink route={RouteNames.Products} setShow={setShow}>
+                        <NavLink
+                            route={RouteNames.Products}
+                            setShow={setShow}
+                            activeRoute={
+                                location.pathname == RouteNames.Products
+                            }
+                        >
                             <svg
-                                aria-hidden="true"
-                                className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900"
+                                className={`w-6 h-6 ${
+                                    location.pathname == RouteNames.Products
+                                        ? "text-purple-600"
+                                        : "text-gray-400"
+                                } transition duration-75 group-hover:text-gray-900`}
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -100,10 +128,17 @@ const NavBar: FunctionComponent = () => {
                             </svg>
                             <span className="ml-3">Products</span>
                         </NavLink>
-                        <NavLink route={RouteNames.Products} setShow={setShow}>
+                        <NavLink
+                            route={RouteNames.Forum}
+                            setShow={setShow}
+                            activeRoute={location.pathname == RouteNames.Forum}
+                        >
                             <svg
-                                aria-hidden="true"
-                                className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900"
+                                className={`w-6 h-6 ${
+                                    location.pathname == RouteNames.Forum
+                                        ? "text-purple-600"
+                                        : "text-gray-400"
+                                } transition duration-75 group-hover:text-gray-900`}
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -117,15 +152,71 @@ const NavBar: FunctionComponent = () => {
                                     fill="currentColor"
                                 />
                             </svg>
-                            <span className="ml-3">Forum (NOT WORKING)</span>
+                            <span className="ml-3">Forum</span>
                         </NavLink>
                     </ul>
+                    {getUser?.role == "ADMIN" && (
+                        <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200">
+                            <NavLink
+                                route={RouteNames.StoreLocationManager}
+                                setShow={setShow}
+                                activeRoute={
+                                    location.pathname ==
+                                    RouteNames.StoreLocationManager
+                                }
+                            >
+                                <svg
+                                    className={`w-6 h-6 ${
+                                        location.pathname ==
+                                        RouteNames.StoreLocationManager
+                                            ? "text-purple-600"
+                                            : "text-gray-400"
+                                    } transition duration-75 group-hover:text-gray-900`}
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M17.876.517A1 1 0 0 0 17 0H3a1 1 0 0 0-.871.508C1.63 1.393 0 5.385 0 6.75a3.236 3.236 0 0 0 1 2.336V19a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9.044a3.242 3.242 0 0 0 1-2.294c0-1.283-1.626-5.33-2.124-6.233ZM15.5 14.7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1-.8-.8v-2.4a.8.8 0 0 1 .8-.8h2.4a.8.8 0 0 1 .8.8v2.4ZM16.75 8a1.252 1.252 0 0 1-1.25-1.25 1 1 0 0 0-2 0 1.25 1.25 0 0 1-2.5 0 1 1 0 0 0-2 0 1.25 1.25 0 0 1-2.5 0 1 1 0 0 0-2 0A1.252 1.252 0 0 1 3.25 8 1.266 1.266 0 0 1 2 6.75C2.306 5.1 2.841 3.501 3.591 2H16.4A19.015 19.015 0 0 1 18 6.75 1.337 1.337 0 0 1 16.75 8Z" />
+                                </svg>
+                                <span className="flex-1 ml-3 whitespace-nowrap">
+                                    Store Location Manager
+                                </span>
+                            </NavLink>
+                            {/* <NavLink
+                                route={RouteNames.UploadScrapedData}
+                                setShow={setShow}
+                                activeRoute={
+                                    location.pathname ==
+                                    RouteNames.UploadScrapedData
+                                }
+                            >
+                                <svg
+                                    className={`w-6 h-6 ${
+                                        location.pathname ==
+                                        RouteNames.UploadScrapedData
+                                            ? "text-purple-600"
+                                            : "text-gray-400"
+                                    } transition duration-75 group-hover:text-gray-900`}
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
+                                    <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
+                                    <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
+                                </svg>
+                                <span className="flex-1 ml-3 whitespace-nowrap">
+                                    Upload Scraped Data
+                                </span>
+                            </NavLink> */}
+                        </ul>
+                    )}
                     <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200">
                         {getUser ? (
                             <li>
                                 <button
                                     onClick={handleLogout}
-                                    className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                    className="flex w-full items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 group"
                                 >
                                     <svg
                                         aria-hidden="true"
@@ -144,10 +235,17 @@ const NavBar: FunctionComponent = () => {
                                 <NavLink
                                     route={RouteNames.Login}
                                     setShow={setShow}
+                                    activeRoute={
+                                        location.pathname == RouteNames.Login
+                                    }
                                 >
                                     <svg
-                                        aria-hidden="true"
-                                        className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900"
+                                        className={`w-6 h-6 ${
+                                            location.pathname ==
+                                            RouteNames.Login
+                                                ? "text-purple-600"
+                                                : "text-gray-400"
+                                        } transition duration-75 group-hover:text-gray-900`}
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -167,10 +265,17 @@ const NavBar: FunctionComponent = () => {
                                 <NavLink
                                     route={RouteNames.Register}
                                     setShow={setShow}
+                                    activeRoute={
+                                        location.pathname == RouteNames.Register
+                                    }
                                 >
                                     <svg
-                                        aria-hidden="true"
-                                        className="w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900"
+                                        className={`w-6 h-6 ${
+                                            location.pathname ==
+                                            RouteNames.Register
+                                                ? "text-purple-600"
+                                                : "text-gray-400"
+                                        } transition duration-75 group-hover:text-gray-900`}
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -190,75 +295,6 @@ const NavBar: FunctionComponent = () => {
             </aside>
         </div>
     );
-
-    // return (
-    //   <nav className="bg-gray-500 sticky top-0">
-    //     <div className="border-gray-200 max-w-screen-xl flex flex-wrap items-center mx-auto py-4">
-    //       <button
-    //         onClick={() => setShow((show) => !show)}
-    //         type="button"
-    //         className="inline-flex items-center p-2 ml-3 text-sm text-gray-100 rounded-lg hover:bg-gray-400 outline-none ring-2 ring-gray-200"
-    //       >
-    //         <span className="sr-only">Open main menu</span>
-    //         <svg
-    //           className="w-6 h-6"
-    //           aria-hidden="true"
-    //           fill="currentColor"
-    //           viewBox="0 0 20 20"
-    //           xmlns="http://www.w3.org/2000/svg"
-    //         >
-    //           <path
-    //             fillRule="evenodd"
-    //             d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-    //             clipRule="evenodd"
-    //           ></path>
-    //         </svg>
-    //       </button>
-    //       <div className="ml-3 flex items-center">
-    //         <span className="text-gray-100 self-center text-xl font-semibold whitespace-nowrap">
-    //           {RouteNames.routeUrlToTitle(location.pathname)}
-    //         </span>
-    //       </div>
-    //       <div className={`w-full ${show ? "" : "hidden"}`} id="navbar-hamburger">
-    //         <ul className="flex flex-col font-medium mt-4 rounded-lg border-t-2 border-gray-100">
-    //           <NavLink
-    //             name="Products"
-    //             route={RouteNames.Products}
-    //             setShow={setShow}
-    //           />
-    //           <NavLink
-    //             name="Pc Build"
-    //             route={RouteNames.PcBuild}
-    //             setShow={setShow}
-    //           />
-    //           {getUser ? (
-    //             <li>
-    //               <button
-    //                 onClick={handleLogout}
-    //                 className="w-full text-left py-2 pl-3 pr-4 text-gray-100 bg-gray-500 hover:bg-gray-400 border-b-2 border-gray-100"
-    //               >
-    //                 Logout
-    //               </button>
-    //             </li>
-    //           ) : (
-    //             <>
-    //               <NavLink
-    //                 name="Register"
-    //                 route={RouteNames.Register}
-    //                 setShow={setShow}
-    //               />
-    //               <NavLink
-    //                 name="Login"
-    //                 route={RouteNames.Login}
-    //                 setShow={setShow}
-    //               />
-    //             </>
-    //           )}
-    //         </ul>
-    //       </div>
-    //     </div>
-    //   </nav>
-    // );
 };
 
 export default NavBar;

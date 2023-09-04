@@ -20,7 +20,7 @@ const ProductDetails: FC = () => {
         navigate(RouteNames.PcBuild);
     };
 
-    const handleStoreClick = async (store: StoreLocation) => {
+    const handleStoreClick =  (store: StoreLocation) => {
         navigator.geolocation.getCurrentPosition(function (position) {
             const { latitude } = position.coords;
             const { longitude } = position.coords;
