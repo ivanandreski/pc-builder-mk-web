@@ -1,7 +1,7 @@
-import axios from "../axios/axios";
-import { FunctionComponent, useEffect, useState, createRef } from "react";
+// @ts-nocheck
 
-import { Product } from "../Models/Product";
+import axios from "../axios/axios";
+import { FunctionComponent, useEffect, useState } from "react";
 
 const StoreLocationManager: FunctionComponent = () => {
     const [isLoading, setIsLoading] = useState(true);

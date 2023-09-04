@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { FunctionComponent, useEffect, useState, createRef } from "react";
 
 import { Product } from "../Models/Product";

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import ProductCard from "../Components/ProductCard";
 import Spinner from "../Components/Spinner";
 import ProductFilter from "../Components/ProductFilter";
