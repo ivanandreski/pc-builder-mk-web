@@ -36,20 +36,20 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*"],
-        runtimeCaching: [
-          {
-            urlPattern: ({ url }) => {
-              return url.pathname.startsWith("/api/product");
-            },
-            handler: "CacheFirst" as const,
-            options: {
-              cacheName: "api-products-cache",
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-        ],
+        // runtimeCaching: [
+        //   {
+        //     urlPattern: ({ url }) => {
+        //       return url.pathname.startsWith("/api/product");
+        //     },
+        //     handler: "CacheFirst" as const,
+        //     options: {
+        //       cacheName: "api-products-cache",
+        //       cacheableResponse: {
+        //         statuses: [0, 200],
+        //       },
+        //     },
+        //   },
+        // ],
       },
     }),
   ],
