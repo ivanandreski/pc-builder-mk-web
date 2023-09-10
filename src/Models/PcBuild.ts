@@ -43,6 +43,21 @@ export class PcBuild {
     return pcBuild;
   }
 
+  toText(): string {
+    let text = "\n\n";
+
+    text += "Motherboard: " + (this.motherboard?.name ?? "/") + "\n";
+    text += "Processor: " + (this.processor?.name ?? "/") + "\n";
+    text += "RAM: " + (this.ram?.name ?? "/") + "\n";
+    text += "Graphics Card: " + (this.graphicsCard?.name ?? "/") + "\n";
+    text += "Power Supply: " + (this.powerSupply?.name ?? "/") + "\n";
+    text += "Case: " + (this.case?.name ?? "/") + "\n";
+    text += "Storage: " + (this.storage?.name ?? "/") + "\n\n";
+    text += "Total price: " + this.totalPrice() + "MKD";
+
+    return text;
+  }
+
   isCompatible(): isCompatibleReturnType {
     let flag = true;
     const messages = [];

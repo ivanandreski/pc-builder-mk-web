@@ -13,7 +13,7 @@ import useGetUser from "../Hooks/useGetUser";
 import NavLink from "../Components/NavLink";
 
 const NavBar: FunctionComponent = () => {
-    const forceUpdate = useReducer(() => ({}), {})[1] as () => void;
+    // const forceUpdate = useReducer(() => ({}), {})[1] as () => void;
 
     const [show, setShow] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ const NavBar: FunctionComponent = () => {
     const handleLogout = () => {
         localStorage.removeItem("user");
         setShow(false);
-        forceUpdate();
+        document.location.reload();
     };
 
     useEffect(() => {

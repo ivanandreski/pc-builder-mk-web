@@ -9,6 +9,7 @@ export default class RouteNames {
     static ProductDetails = "/product/details";
     static PcBuild = "/pc-build";
     static Forum = "/forum";
+    static ForumPost = "/forum/post/:postId";
     static UploadScrapedData = "/upload-scraped-sata";
     static StoreLocationManager = "/store-location-manager";
 

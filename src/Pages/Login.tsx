@@ -6,12 +6,10 @@ import RouteNames from "../Config/RouteNames";
 import PasswordInput from "../Components/Input/PasswordInput";
 import EmailInput from "../Components/Input/EmailInput";
 
-
-// TODO: wrong password
-
 const Login: FunctionComponent = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
 
@@ -35,8 +33,7 @@ const Login: FunctionComponent = () => {
 
             navigate(RouteNames.Home);
         } catch (e: any) {
-            // TODO: flash toast message
-            console.log(e.message);
+            setError(e.response.data);
         }
     };
 
@@ -45,6 +42,9 @@ const Login: FunctionComponent = () => {
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 <EmailInput value={email} setValue={setEmail} />
                 <PasswordInput value={password} setValue={setPassword} />
+                {error.length > 0 && (
+                    <div className="text-red-700">{error}</div>
+                )}
                 <button
                     type="submit"
                     className="w-full focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"

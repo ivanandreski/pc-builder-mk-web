@@ -10,6 +10,7 @@ import Layout from "./Layout/Layout";
 import PcBuildPage from "./Pages/PcBuildPage";
 import Products from "./Pages/Products";
 import Forum from "./Pages/Forum";
+import ForumPost from "./Pages/ForumPost";
 import StoreLocationManager from "./Pages/StoreLocationManager";
 import UploadScrapedData from "./Pages/UploadScrapedData";
 
@@ -27,6 +28,10 @@ export default function App() {
                     <Route
                         path={RouteNames.ProductDetails}
                         element={<ProductDetails />}
+                    />
+                    <Route
+                        path={RouteNames.ForumPost}
+                        element={<ForumPost />}
                     />
                     <Route path={RouteNames.Forum} element={<Forum />} />
                     <Route

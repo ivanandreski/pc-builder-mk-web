@@ -36,6 +36,7 @@ const PcBuildPage: FunctionComponent = () => {
                 totalPrice={pcBuild?.totalPrice() || 0}
                 compatible={pcBuild?.isCompatible().isCompatible || false}
                 messages={pcBuild?.isCompatible().messages || []}
+                pcBuild={pcBuild!}
             />
             {pcBuild?.motherboard && (
                 <SelectedProductCard
