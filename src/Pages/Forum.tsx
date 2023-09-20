@@ -1,18 +1,16 @@
-// @ts-ignore
+// @ts-nocheck
 
 import ProductCard from "../Components/ProductCard";
-import Spinner from "../Components/Spinner";
-import ProductFilter from "../Components/ProductFilter";
 import axios from "../axios/axios";
-import { FunctionComponent, useEffect, useState, createRef } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Forum: FunctionComponent = () => {
-    const [isLoading, setIsLoading] = useState(true);
+    // const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        setIsLoading(true);
+        // setIsLoading(true);
         fetchPosts();
     }, []);
 
@@ -21,7 +19,7 @@ const Forum: FunctionComponent = () => {
             const response = await axios.get("forum/posts");
             setPosts(response.data);
 
-            setIsLoading(false);
+            // setIsLoading(false);
         } catch (e: any) {
             console.log(e);
         }

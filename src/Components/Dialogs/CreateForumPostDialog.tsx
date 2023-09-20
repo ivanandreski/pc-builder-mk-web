@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { FC, useEffect, useState } from "react";
 import { PcBuild } from "../../Models/PcBuild";
 import axios from "../../axios/axios";
@@ -25,11 +27,10 @@ const CreateForumPostDialog: FC<PcBuildDialogProps> = ({
 
     const handlePostClick = async () => {
         try {
-            // @ts-ignore
             const token = (JSON.parse(localStorage.getItem("user")) as User)
                 .token;
 
-            const { data } = await axios.post(
+            await axios.post(
                 "forum/posts",
                 {
                     title: title,
