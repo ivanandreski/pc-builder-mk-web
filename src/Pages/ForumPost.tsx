@@ -142,7 +142,7 @@ const ForumPost: FunctionComponent = () => {
                                 {user && (
                                     <>
                                         <div className="grid grid-cols-3 gap-3 w-full mt-4 px-2">
-                                            <div>
+                                            <div className="flex justify-center">
                                                 <button
                                                     onClick={() =>
                                                         handleVoteClick(
@@ -170,7 +170,7 @@ const ForumPost: FunctionComponent = () => {
                                             <div className="text-xl text-center">
                                                 {comment.score}
                                             </div>
-                                            <div>
+                                            <div className="flex justify-center">
                                                 <button
                                                     onClick={() =>
                                                         handleVoteClick(
